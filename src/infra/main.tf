@@ -31,13 +31,15 @@ resource "aws_security_group" "rds_security_group" {
 
 resource "aws_db_instance" "postgres" {
   allocated_storage    = var.db_allocated_storage
-  storage_type         = "gp2"
-  engine               = "postgres"
+  identifier           = var.db_instance_identifier 
+  storage_type         = var.storage_type
+  engine               = var.engine
   engine_version       = var.db_engine_version
+  db_name              = var.db_name
   instance_class       = var.db_instance_class
   username             = var.db_username
   password             = var.db_password
-  parameter_group_name = "default.postgres16"
+  parameter_group_name = var.parameter_group_name
   publicly_accessible  = var.publicly_accessible
 
   vpc_security_group_ids = [aws_security_group.rds_security_group.id]
@@ -46,7 +48,7 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot     = true
 
   tags = {
-    Name        = "Fiap8SoatTeam32"
+    Name        = var.tags_name
     Environment = var.environment
   }
 }
@@ -57,8 +59,4 @@ output "db_endpoint" {
 
 output "db_username" {
   value = aws_db_instance.postgres.username
-}
-
-output "db_password" {
-  value = var.db_password
 }
