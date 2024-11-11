@@ -41,9 +41,8 @@ variable "db_instance_identifier" {
 variable "db_name" {
   description = "Database Identifier"
   type        = string
-  default     = "tc-backend"
+  default     = "fiapBackend"
 }
-
 
 variable "db_allocated_storage" {
   description = "Allocated storage in GB for RDS"
@@ -61,7 +60,6 @@ variable "db_password" {
   description = "Master password for the database"
   type        = string
   sensitive   = true
-  default = "d7cbdd4e3f12495793f9aedeb0a0639a"
 }
 
 variable "db_engine_version" {
