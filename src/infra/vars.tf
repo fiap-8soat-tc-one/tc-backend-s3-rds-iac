@@ -10,6 +10,41 @@ variable "db_instance_class" {
   default     = "db.t3.micro"
 }
 
+
+variable "storage_type" {
+  description = "Storage Type"
+  type        = string
+  default     = "gp2"
+}
+
+
+variable "engine" {
+  description = "RDS Engine"
+  type        = string
+  default     = "postgres"
+}
+
+variable "parameter_group_name" {
+  description = "RDS Parameter"
+  type        = string
+  default     = "default.postgres16"
+}
+
+
+variable "db_instance_identifier" {
+  description = "Database Identifier"
+  type        = string
+  default     = "db-fiap-8soat-team32"
+}
+
+
+variable "db_name" {
+  description = "Database Identifier"
+  type        = string
+  default     = "tc-backend"
+}
+
+
 variable "db_allocated_storage" {
   description = "Allocated storage in GB for RDS"
   type        = number
@@ -57,4 +92,11 @@ variable "allowed_cidr_blocks" {
   description = "List of CIDR blocks allowed to access the RDS instance"
   type        = list(string)
   default     = ["0.0.0.0/0"] # Allow public access; replace with specific IPs for security
+}
+
+
+variable "tags_name" {
+  description = "Tags Name"
+  type        = string
+  default     = "Fiap8SoatTeam32"
 }
