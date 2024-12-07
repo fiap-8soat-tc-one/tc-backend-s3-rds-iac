@@ -1,12 +1,13 @@
 variable "db_username" {
   description = "DB Username"
   type        = string
+  default     = "postgres"
 }
 
 variable "db_password" {
   description = "DB Password"
   type        = string
-  sensitive   = true
+  sensitive   = true 
 }
 
 variable "db_name" {
