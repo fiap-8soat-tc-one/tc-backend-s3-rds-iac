@@ -1,62 +1,26 @@
-provider "aws" {
-  region = var.region
-}
-
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.75.1"
+    }
+  }
+
   backend "s3" {
-    bucket = "fiap-2bdc9c48"
-    key    = "terraform/states/rds.tfstate"
+    bucket = "bucket-tf-state-grupo32"
+    key    = "rds/terraform.state"
     region = "us-east-1"
   }
 }
 
-resource "aws_security_group" "rds_security_group" {
-  name        = "rds-postgres-security-group"
-  description = "Allow inbound traffic to RDS instance"
+provider "aws" {
+  region = "us-east-1"
 
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = var.allowed_cidr_blocks
+  default_tags {
+    tags = {
+      Environment = "PRD"
+      Owner       = "GRUPO32"
+      Managed-by  = "Terraform"
+    }
   }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_db_instance" "postgres" {
-  allocated_storage    = var.db_allocated_storage
-  identifier           = var.db_instance_identifier 
-  storage_type         = var.storage_type
-  engine               = var.engine
-  engine_version       = var.db_engine_version
-  db_name              = var.db_name
-  instance_class       = var.db_instance_class
-  username             = var.db_username
-  password             = var.db_password
-  parameter_group_name = var.parameter_group_name
-  publicly_accessible  = var.publicly_accessible
-
-  vpc_security_group_ids = [aws_security_group.rds_security_group.id]
-
-  backup_retention_period = var.backup_retention_period
-  skip_final_snapshot     = true
-
-  tags = {
-    Name        = var.tags_name
-    Environment = var.environment
-  }
-}
-
-output "db_endpoint" {
-  value = aws_db_instance.postgres.endpoint
-}
-
-output "db_username" {
-  value = aws_db_instance.postgres.username
 }
