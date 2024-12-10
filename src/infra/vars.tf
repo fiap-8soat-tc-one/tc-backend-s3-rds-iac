@@ -13,7 +13,7 @@ variable "db_password" {
 variable "db_name" {
   description = "database name"
   type        = string
-  default     = "db-tc-backends3"
+  default     = "dbtcbackends3"
 }
 
 variable "instance_type" {
