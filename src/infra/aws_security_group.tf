@@ -15,5 +15,10 @@ resource "aws_security_group" "security-group-database" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = var.security_group
+  }
+
 }
 
