@@ -25,7 +25,7 @@ variable "db_password" {
 variable "db_name" {
   description = "database name"
   type        = string
-  default     = "dbtcbackends3"
+  default     = "dbBackendS3"
 }
 
 variable "instance_type" {
@@ -68,6 +68,12 @@ variable "skip_final_snapshot" {
   description = "Skip snapshot"
   type        = bool
   default     = true
+}
+
+variable "security_group" {
+  description = "Security Group RDS"
+  type        = string
+  default     = "db-backend-s3-sg"
 }
 
 variable "database-role" {
