@@ -32,6 +32,9 @@ jobs:
     - name: Initialize Terraform
       working-directory: ./src/infra
       run: terraform init
+      
+    - name: Get Session Token
+      run: echo aws sts get-session-token
 
     - name: Terraform Plan
       working-directory: ./src/infra
