@@ -27,12 +27,14 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ vars.AWS_REGION }}
 
     - name: Initialize Terraform
       working-directory: ./src/infra
       run: terraform init
+      
+    - name: Get Session Token
+      run: echo aws sts get-session-token
 
     - name: Terraform Plan
       working-directory: ./src/infra
