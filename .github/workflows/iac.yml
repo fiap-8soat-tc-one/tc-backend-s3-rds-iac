@@ -6,10 +6,13 @@ on:
       - main 
 
 jobs:
-  terraform:
+  build:
     name: Terraform Deploy
     runs-on: ubuntu-latest
-
+    
+    environment:
+      name: staging
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
@@ -26,7 +29,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: ${{ vars.AWS_REGION }}
-
 
     - name: Initialize Terraform
       working-directory: ./src/infra
