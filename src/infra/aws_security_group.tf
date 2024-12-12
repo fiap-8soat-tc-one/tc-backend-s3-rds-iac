@@ -1,6 +1,6 @@
 resource "aws_security_group" "security-group-database" {
-  name        = "security-group-database"
-  description = "Security Group Database"
+  name        = var.security_group
+  description = "AWS RDS Security Group Database"
 
   ingress {
     from_port   = 5432
@@ -17,15 +17,3 @@ resource "aws_security_group" "security-group-database" {
   }
 }
 
-output "db_endpoint" {
-  value = aws_db_instance.db-tc-backends3.endpoint
-}
-
-output "db_username" {
-  value = var.db_username
-}
-
-output "db_password" {
-  value     = var.db_password
-  sensitive = true
-}

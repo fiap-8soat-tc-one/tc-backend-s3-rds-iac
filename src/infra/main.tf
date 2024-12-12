@@ -18,8 +18,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = "PRD"
-      Owner       = "GRUPO32"
+      Environment = "stg"
+      Owner       = "t32"
       Managed-by  = "Terraform"
     }
   }
