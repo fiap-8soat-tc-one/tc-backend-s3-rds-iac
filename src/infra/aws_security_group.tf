@@ -1,6 +1,6 @@
 resource "aws_security_group" "security-group-database" {
-  name        = "security-group-database"
-  description = "Security Group Database"
+  name        = var.security_group
+  description = "AWS RDS Security Group Database"
 
   ingress {
     from_port   = 5432
