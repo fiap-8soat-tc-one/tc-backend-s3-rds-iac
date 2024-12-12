@@ -12,4 +12,9 @@ resource "aws_db_instance" "db-tc-backends3" {
   multi_az            = var.multi_az
   skip_final_snapshot = var.skip_final_snapshot
   vpc_security_group_ids = [aws_security_group.security-group-database.id]
+
+  tags = {
+    Name = "${var.db_identifier}-${var.db_name}"
+  }
+
 }
