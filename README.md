@@ -228,6 +228,3 @@ variable "db_password" {
 
 - Certifique-se de atualizar as variáveis em `vars.tf` com os detalhes específicos do seu ambiente.
 - Garanta que as permissões apropriadas do IAM estejam disponíveis para executar os comandos do Terraform.
-
----
-Em caso de dúvidas ou problemas, fique à vontade para entrar em contato.
